@@ -1,18 +1,34 @@
-## Getting Started
+# Hangman Game – Football Edition ⚽
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+A simple **Hangman game in Java** designed for **football fans**!  
+Guess football-related words from top leagues like **Premier League, La Liga, Serie A, Ligue 1, and Bundesliga**.
 
-## Folder Structure
+---
 
-The workspace contains two folders by default, where:
+## Features
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+- Randomly selects a word from a text file (`words.txt`)  
+- Tracks correct and wrong guesses  
+- Shows Hangman ASCII art for wrong attempts  
+- Designed for **console play in Java**
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+---
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+## Technical Details
 
-## Dependency Management
+- Built with **Java**  
+- Reads words from a **text file** for easy customization  
+- Uses **random selection** for each game  
+- Simple **console-based interface** for easy extension  
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+---
+
+## How to Run
+
+1. Make sure you have **Java JDK** installed  
+2. Place `words.txt` in the project folder  
+3. Compile and run:
+
+```bash
+javac App.java
+java App
