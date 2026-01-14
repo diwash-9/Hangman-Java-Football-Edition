@@ -1,11 +1,27 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
+        String filePath = "words.txt";
+        BufferedReader reader = new BufferedReader(new FileReader(filePath));
 
-        String word = "diwash";
+        List<String> words = new ArrayList<>();
+        String line;
+        while ((line = reader.readLine()) != null) {
+            if (!line.isBlank()) {
+                words.add(line.trim());
+            }
+        }
+        Random rand = new Random();
+        String randomWord = words.get(rand.nextInt(words.size()));
+
+        String word = randomWord.toLowerCase();
         ArrayList<String> wordState = new ArrayList<>();
         int wrongGuesses = 0;
 
@@ -15,16 +31,21 @@ public class App {
             wordState.add("_");
         }
         System.out.println("***********************");
-        System.out.println("WELCOME TO HANGMAN GAME");
+        System.out.println("WELCOME TO HANGMAN GAME (FOOTBALL VERSION)");
         System.out.println("***********************");
         while (wrongGuesses < 6) {
             printCurrentWordState(wordState);
             Character userGuess;
             System.out.print("Guess a letter: ");
-            userGuess = scanner.next().charAt(0);
+            userGuess = scanner.next().toLowerCase().charAt(0);
+
+            System.out.println("***********************");
             System.out.println("You guessed: " + userGuess);
+            System.out.println("***********************");
             if (word.contains(String.valueOf(userGuess))) {
-                System.out.println("Correct Guess");
+                // System.out.println("Correct Guess");
+                System.out.println("Correct guess. Current Hangman State");
+                System.out.println(printHangmanArt(wrongGuesses));
                 for (int i = 0; i < word.length(); i++) {
                     if (word.charAt(i) == userGuess) {
                         wordState.set(i, String.valueOf(userGuess));
@@ -42,6 +63,11 @@ public class App {
                 wrongGuesses += 1;
                 System.out.println("Wrong guess. Current Hangman State");
                 System.out.println(printHangmanArt(wrongGuesses));
+
+            }
+            if (wrongGuesses == 6) {
+                System.out.println("GAME OVER!");
+                System.out.println("The word was: " + word);
             }
         }
     }
